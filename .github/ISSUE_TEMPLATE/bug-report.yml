@@ -1,0 +1,50 @@
+name: 🐛 Data Pipeline Bug
+description: Report issues with ETL processes or data quality
+title: "[BUG] "
+labels: ["bug", "data-pipeline"]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      options:
+        - API Extraction
+        - Data Transformation
+        - Warehouse Loading
+        - Power BI Integration
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction Steps
+      description: Exactly how to trigger the issue
+      placeholder: |
+        1. Run pipeline with command...
+        2. Observe error in...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened?
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+  - type: input
+    id: environment
+    attributes:
+      label: Execution Environment
+      placeholder: "Python 3.11.4, Airflow 2.8.1, SQL Server 2022"
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Impact Severity
+      options:
+        - "🚨 Blocking (Pipeline Failure)"
+        - "⚠️ Major (Data Corruption)"
+        - "🟠 Moderate (Partial Failure)"
+        - "🔵 Minor (Edge Case)"
