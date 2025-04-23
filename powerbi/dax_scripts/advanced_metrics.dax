@@ -1,0 +1,13 @@
+Player Impact Estimate = 
+VAR PTS = SUM(PlayerStats[PTS])
+VAR REB = SUM(PlayerStats[REB])
+VAR AST = SUM(PlayerStats[AST])
+VAR STL = SUM(PlayerStats[STL])
+VAR BLK = SUM(PlayerStats[BLK])
+VAR MissedFG = SUM(PlayerStats[FGA]) - SUM(PlayerStats[FGM])
+VAR MissedFT = SUM(PlayerStats[FTA]) - SUM(PlayerStats[FTM])
+VAR TOV = SUM(PlayerStats[TOV])
+
+RETURN 
+(PTS + REB + AST + STL + BLK - MissedFG - MissedFT - TOV) / 
+CALCULATE(SUM(PlayerStats[MIN]), ALLSELECTED(PlayerStats))
