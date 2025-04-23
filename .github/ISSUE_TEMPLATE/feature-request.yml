@@ -1,0 +1,34 @@
+name: 🚀 Analytics Feature
+description: Suggest new dashboard features or data models
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What coaching need does this address?
+      placeholder: "Coaches currently struggle to..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: How should this work?
+      placeholder: |
+        Add new visualization showing...
+        Calculate [NEW_METRIC] using formula...
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Approaches
+      description: Other ways to solve this problem
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Prerequisites
+      options:
+        - label: I've reviewed existing KPIs
+        - label: I've checked data availability
+        - label: This aligns with team playstyle
