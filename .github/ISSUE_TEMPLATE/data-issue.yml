@@ -1,0 +1,36 @@
+name: 📈 Data Anomaly
+description: Report statistical inconsistencies or outliers
+title: "[DATA] "
+labels: ["data-quality"]
+body:
+  - type: textarea
+    id: metric
+    attributes:
+      label: Affected Metric
+      placeholder: "Player Efficiency Rating, Shot Accuracy..."
+  - type: input
+    id: player
+    attributes:
+      label: Player ID/Name
+      placeholder: "LeBron James (2544)"
+  - type: input
+    id: game
+    attributes:
+      label: Game Identifier
+      placeholder: "2024-10-23 LAL vs DEN"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting Evidence
+      description: Provide sources or calculations
+      placeholder: |
+        NBA Stats API shows [X] but warehouse has [Y]
+        Z-score calculation: (value - μ)/σ = ...
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Business Impact
+      options:
+        - label: Affects player rotation decisions
+        - label: Impacts opponent analysis
+        - label: Influences contract negotiations
