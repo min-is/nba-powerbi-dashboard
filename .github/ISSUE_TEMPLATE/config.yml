@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🏀 Data Questions
+    url: https://github.com/min-is/nba-performance-prediction/discussions
+    about: Ask general questions about data sources or basketball metrics
+    
+  - name: 📊 Power BI Support
+    url: mailto:isaac.kj.min@gmail.com
+    about: Get help with dashboard visualization issues
