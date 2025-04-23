@@ -18,7 +18,7 @@ body:
     id: steps
     attributes:
       label: Reproduction Steps
-      description: Exactly how to trigger the issue
+      description: How do you exactly trigger this issue?
       placeholder: |
         1. Run pipeline with command...
         2. Observe error in...
