@@ -1,0 +1,11 @@
+{
+    "visualStyles": {
+      "page": {
+        "mobile": {
+          "gridHeight": 300,
+          "gridWidth": 480,
+          "fontSize": 14
+        }
+      }
+    }
+  }

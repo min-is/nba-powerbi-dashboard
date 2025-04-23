@@ -1,0 +1,7 @@
+PER = 
+VAR PER = (SUM(PlayerStats[PTS]) + SUM(PlayerStats[REB]) + SUM(PlayerStats[AST]) +
+          SUM(PlayerStats[STL]) + SUM(PlayerStats[BLK]) - SUM(PlayerStats[TOV]) -
+          (SUM(PlayerStats[FGA]) - SUM(PlayerStats[FGM])) - 
+          (SUM(PlayerStats[FTA]) - SUM(PlayerStats[FTM]))) /
+          SUM(PlayerStats[MIN])
+RETURN IF(PER < 0, BLANK(), PER)
