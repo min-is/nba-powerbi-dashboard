@@ -1,0 +1,22 @@
+@startuml data_flow
+skinparam linetype ortho
+
+package "Data Sources" {
+    [NBA API] <|-- [JSON Feeds]
+    [Tracking Systems] <|-- [CSV Exports]
+    [Scouting DB] <|-- [PostgreSQL]
+}
+
+package "Staging" {
+    [Raw Zone] --> [Cleaned Zone]
+    [Cleaned Zone] --> [Transformed Zone]
+}
+
+package "Warehouse" {
+    [Dimension Tables] <-- [Fact Tables]
+}
+
+[Transformed Zone] --> [Dimension Tables]
+[Transformed Zone] --> [Fact Tables]
+
+@enduml
