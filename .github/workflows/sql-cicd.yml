@@ -1,0 +1,38 @@
+name: Database Schema CI/CD
+on:
+  pull_request:
+    paths:
+      - 'data_architecture/sql_scripts/**/*.sql'
+  push:
+    branches: [ main ]
+
+jobs:
+  build-dacpac:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build SQL Project
+        run: |
+          dotnet build data_architecture/nba_warehouse.sln --configuration Release
+          SqlPackage /Action:Extract /SourceDatabaseName:"NBA_Warehouse" /TargetFile:"nba_warehouse.dacpac"
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dacpac
+          path: nba_warehouse.dacpac
+
+  deploy-database:
+    needs: build-dacpac
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: dacpac
+
+      - name: Deploy to SQL Server
+        uses: Azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.SQLDB_CONNECTION_STRING }}
+          dacpac-file: nba_warehouse.dacpac

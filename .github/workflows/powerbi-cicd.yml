@@ -1,0 +1,26 @@
+name: Power BI Deployment Pipeline
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'powerbi/reports/**/*.pbix'
+      - 'powerbi/dax_scripts/**/*.md'
+
+jobs:
+  deploy-powerbi:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Power BI Deployment
+        uses: mohitnayar123/power-bi-utils@v2.1.0
+        with:
+          files: |
+            powerbi/reports/player_performance.pbix
+            powerbi/reports/opponent_analysis.pbix
+        env:
+          CLIENT_ID: ${{ secrets.POWERBI_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.POWERBI_CLIENT_SECRET }}
+          TENANT_ID: ${{ secrets.POWERBI_TENANT_ID }}

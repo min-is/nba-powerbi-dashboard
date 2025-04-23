@@ -1,0 +1,28 @@
+name: Statistical Validation
+on:
+  workflow_run:
+    workflows: ["Daily ETL Processing"]
+    types:
+      - completed
+
+jobs:
+  anomaly-detection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: processed-data-${{ github.event.workflow_run.id }}
+
+      - name: Run Anomaly Detection
+        run: |
+          python scripts/analytics/anomaly_detection.py \
+          --input data_architecture/processed/player_stats.parquet \
+          --output reports/anomalies.json
+
+      - name: Upload Findings
+        uses: actions/upload-artifact@v3
+        with:
+          name: anomalies-${{ github.run_id }}
+          path: reports/anomalies.json
